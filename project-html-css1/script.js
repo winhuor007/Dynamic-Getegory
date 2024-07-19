@@ -38,8 +38,10 @@ fetch(jsonFile)
             <span class="sale-price">${currentPrice}</span>
             <span class="original-price">${oldPrice}</span>
           </div>
-          <div class="rating">5.0</div>
-          <span>⭐⭐⭐⭐⭐</span>
+          <div class="rating">${rating}</div>
+          <span>
+          <div class='forStar'>${createStar(rating)}</div>
+          </span>
         </div>
       `;
     });
@@ -52,6 +54,7 @@ fetch(jsonFile)
         cardCount.textContent = incrementNumber;
         // save local
         localStorage.setItem("cartCount", incrementNumber);
+        btn.style.backgroundColor = "red";
       });
     });
     // Retrieve the cart count from localStorage (if available)
@@ -61,3 +64,16 @@ fetch(jsonFile)
       cardCount.textContent = incrementNumber;
     }
   });
+function createStar(rate) {
+  //const starList = document.querySelector(".forStar");
+  let star = "";
+  for (let i = 0; i < 5; i++) {
+    // starList.innerHTML += `<i class="fa-solid fa-star"></i>`;
+    if (i < rate) {
+      star += `<i class="fa-solid fa-star"></i>`;
+    } else {
+      star += `<i class="fa-regular fa-star"></i>`;
+    }
+  }
+  return star;
+}
